@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
+import Header from './components/Header';
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold text-center text-[#000]">
-      Blog App!
-    </h1>
+    <div className='bg-[#0000] w-full h-[100vh]'>
+      <Header />
+    </div>
   );
 }
 
