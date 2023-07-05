@@ -7,11 +7,11 @@ function Header() {
             <header className='flex flex-row justify-around items-center bg-[#fff] w-full h-[50px] text-[#000] sticky top-0'>
                 <a href='' className='text-[22px]'>MyBlog</a>
                 <nav>
-                    <ul className='flex flex-row gap-4 text-[16px]'>
-                        <li>Home</li>
-                        <li>About</li>
-                        <li>Blog</li>
-                        <li>Contact</li>
+                    <ul className='flex flex-row gap-4 text-[16px] cursor-pointer'>
+                        <li className='hover:text-[#523ab3]'>Home</li>
+                        <li className='hover:text-[#523ab3]'>About</li>
+                        <li className='hover:text-[#523ab3]'>Blog</li>
+                        <li className='hover:text-[#523ab3]'>Contact</li>
                     </ul>
                 </nav>
             </header>
