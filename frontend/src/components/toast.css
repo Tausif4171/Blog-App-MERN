@@ -1,0 +1,13 @@
+.toast-message {
+    background: white;
+    color: #090808;
+    font-size: 17px;
+    width: 20vw;
+    height: 3vw;
+    /* padding: 30px 20px; */
+}
+
+.toast-message .Toastify__close-button {
+    color: green; /* Replace 'red' with the desired color */
+    opacity: 1;
+  }

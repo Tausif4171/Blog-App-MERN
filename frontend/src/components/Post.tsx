@@ -1,6 +1,13 @@
 import React from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './toast.css'
 
 function Post() {
+    const notify = () => toast.success("Wow so easy!", {
+        position: toast.POSITION.BOTTOM_LEFT,
+        className: 'toast-message'
+    });
     return (
         <div className='flex flex-col justify-center items-center min-h-screen mt-16'>
             <div className='w-[50%] lg:w-[30%] mb-10 bg-slate-50'>
@@ -13,6 +20,8 @@ function Post() {
                     As first reported by Forbes, Inflection AI, an AI startup aiming to create “personal AI for everyone,” has closed a $1.3 billion funding
                     round led by Microsoft, Reid Hoffman, Bill Gates, Eric Schmidt and new investor Nvidia.
                 </p>
+                <button onClick={notify}>Notify!</button>
+                <ToastContainer />
             </div>
 
             <div className='w-[50%] lg:w-[30%] mb-10 bg-slate-50'>
