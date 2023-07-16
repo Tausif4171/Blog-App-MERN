@@ -3,14 +3,19 @@ const cors = require('cors')
 const app = express()
 
 app.use(cors())
+app.use(express.json())
 
 app.get('/', (req, res) => {
     res.send('Test')
 })
 
-app.post('/register',(req,res)=>{    
+app.post('/register', (req, res) => {
+    const { email, password } = req.body
+    console.log(email, password)
+
     res.status(200).json({
-        message:'Registration successful'
+        message: 'Registration successful',
+        requestedData: { email, password }
     })
 })
 

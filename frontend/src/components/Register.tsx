@@ -6,7 +6,7 @@ function Register() {
 
     async function register(e: any) {
         e.preventDefault()
-        await fetch('http://localhost:4000/register/', {
+        await fetch('http://localhost:4000/register', {
             method: 'POST',
             body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json' }
@@ -21,7 +21,7 @@ function Register() {
                     <input placeholder='Enter your email' className='mt-3 rounded p-2 outline-none' value={email} onChange={e => setEmail(e.target.value)} />
                     <input placeholder='Enter your password' className='mt-3 rounded p-2 outline-none' value={password} onChange={e => setPassword(e.target.value)} />
                 </div>
-                <button className='bg-[#555] rounded-[4px] mt-6 text-[#fff] p-2'>Register</button>
+                <button className='bg-[#555] rounded-[4px] mt-6 text-[#fff] p-2 outline-none'>Register</button>
             </form>
         </div>
     )
