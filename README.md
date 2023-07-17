@@ -1,1 +1,1 @@
-Blog App coming soon... 🔥
+Blog App coming soon... 🔥 
