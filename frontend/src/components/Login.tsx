@@ -22,6 +22,8 @@ function Login() {
                 <button className='bg-[#555] rounded-[4px] mt-6 text-[#fff] p-2'>Login</button>
             </form>
 
+            {/* <button className="ripple">Button</button> */}
+
             {/* <div>
                 <button onClick={handleOpenModal}>Open Modal</button>
                 {isModalOpen && (
