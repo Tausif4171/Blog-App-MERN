@@ -4,11 +4,11 @@ function Login() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleOpenModal = () => {
-        setIsModalOpen(true);
+      setIsModalOpen(true);
     };
-
+  
     const handleCloseModal = () => {
-        setIsModalOpen(false);
+      setIsModalOpen(false);
     };
 
     return (
@@ -36,6 +36,17 @@ function Login() {
                     </div>
                 )}
             </div> */}
+
+            <div>
+                <button onClick={handleOpenModal}>Open Modal</button>
+                <div className={`modal-overlay ${isModalOpen ? 'visible' : 'hidden'}`}>
+                    <div className={`modal-content ${isModalOpen ? 'visible' : 'hidden'}`}>
+                        <h3 className="modal-heading">Modal Title</h3>
+                        <p>Modal Content</p>
+                        <button onClick={handleCloseModal}>Close Modal</button>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
