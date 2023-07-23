@@ -3,15 +3,15 @@ import { Fragment, useState } from 'react'
 
 import './toast.css'
 function Login() {
-    let [isOpen, setIsOpen] = useState(true)
+    // let [isOpen, setIsOpen] = useState(false)
 
-    function closeModal() {
-        setIsOpen(false)
-    }
+    // function closeModal() {
+    //     setIsOpen(false)
+    // }
 
-    function openModal() {
-        setIsOpen(true)
-    }
+    // function openModal() {
+    //     setIsOpen(true)
+    // }
 
     return (
         <div>
@@ -50,7 +50,7 @@ function Login() {
                 </div>
             </div> */}
 
-            <div className="fixed inset-0 flex items-center justify-center">
+            {/* <div className="fixed inset-0 flex items-center justify-center">
                 <button
                     type="button"
                     onClick={openModal}
@@ -113,7 +113,7 @@ function Login() {
                         </div>
                     </div>
                 </Dialog>
-            </Transition>
+            </Transition> */}
         </div>
     )
 }
