@@ -17,8 +17,13 @@ app.post('/register', async (req, res) => {
     const { email, password } = req.body
     console.log(email, password)
 
-    const userDoc = await UserModel.create({ email, password })
-    res.status(200).json(userDoc)
+    try {
+        const userDoc = await UserModel.create({ email, password })
+        res.json(userDoc)
+    }
+    catch (e) {
+        res.status(400).json(e)
+    }
 })
 
 app.listen(4000)
