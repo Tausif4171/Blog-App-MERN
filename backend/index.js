@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const UserModel = require('./models/User');
+const bcrypt = require('bcrypt')
+// const saltRounds = bcrypt.genSalt(10)
 const app = express()
 
 app.use(cors())
@@ -18,10 +20,14 @@ app.post('/register', async (req, res) => {
     console.log(email, password)
 
     try {
-        const userDoc = await UserModel.create({ email, password })
+        const saltRounds = await bcrypt.genSalt(10) // Wait for the promise to resolve
+        const hashedPassword = await bcrypt.hash(password, saltRounds)
+        console.log(saltRounds, hashedPassword)
+        const userDoc = await UserModel.create({ email, password: hashedPassword })
         res.json(userDoc)
     }
     catch (e) {
+        console.log('s')
         res.status(400).json(e)
     }
 })
