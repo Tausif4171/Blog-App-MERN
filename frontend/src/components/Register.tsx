@@ -6,7 +6,7 @@ function Register() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
-
+    console.log({ errors })
 
     async function register(e: any) {
         e.preventDefault()
@@ -24,7 +24,7 @@ function Register() {
     }
 
     const validationSchema = Yup.object().shape({
-        email: Yup.string().required('Name is required.'),
+        email: Yup.string().required('Email is required.'),
     });
 
     const handleSubmit = async (e: any) => {
@@ -37,6 +37,7 @@ function Register() {
             // Form data is valid, perform form submission logic here...
             console.log('Form data submitted:', email);
             register(e);
+            setErrors({})
         } catch (validationErrors: any) {
             // Yup validation errors occurred, set the errors state accordingly
             const errorsObject: any = {};
@@ -53,7 +54,13 @@ function Register() {
             <form className='flex flex-col w-[25%] mx-auto my-[80px]' onSubmit={handleSubmit}>
                 {/* <label className='align-center items-center'>Login</label> */}
                 <div className='flex flex-col'>
-                    <input placeholder='Enter your email' className={` mt-3 rounded p-2 border-[1px] border-solid ${errors.email ? 'border-[#ccc]' : 'border-[red]'} `} value={email} onChange={e => setEmail(e.target.value)} />
+                    <input
+                        placeholder='Enter your email'
+                        className={`mt-3 rounded p-2 ${errors.email ? 'border-[1px] border-solid border-[red]' : 'outline-none'
+                            }`}
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                    />
                     {errors.email && (
                         <div className="mt-[0.25rem] text-[red]">
                             X {errors.email}
