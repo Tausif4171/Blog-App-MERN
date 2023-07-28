@@ -24,7 +24,10 @@ function Register() {
     }
 
     const validationSchema = Yup.object().shape({
-        email: Yup.string().required('Email is required.'),
+        email: Yup.string()
+            .required('Email is required.')
+            .matches(/^[A-Za-z]*$/, 'Only letters are allowed in the email field.')
+            
     });
 
     const handleSubmit = async (e: any) => {
