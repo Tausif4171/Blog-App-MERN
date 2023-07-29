@@ -27,7 +27,6 @@ function Register() {
         email: Yup.string()
             .required('Email is required.')
             .matches(/^[A-Za-z]*$/, 'Only letters are allowed in the email field.')
-            .min(3, 'minimum 3 letters')
     });
 
     const handleSubmit = async (e: any) => {
