@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as Yup from 'yup';
+import errorIcon from '../assets/icons/errorIcon.svg'
 
 
 function Register() {
@@ -58,14 +59,15 @@ function Register() {
                 <div className='flex flex-col'>
                     <input
                         placeholder='Enter your email'
-                        className={`mt-3 rounded p-2 ${errors.email ? 'border-[1px] border-solid border-[red]' : 'outline-none'
+                        className={`mt-3 rounded p-2 outline-none ${errors.email ? 'border-[1px] border-solid border-[#D72C0D] bg-[#FFF4F4]' : 'outline-none'
                             }`}
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
                     {errors.email && (
-                        <div className="mt-[0.25rem] text-[red]">
-                            X {errors.email}
+                        <div className="mt-[4px] gap-[8px] text-[#D72C0D] flex flex-row text-[14px]">
+                            <img src={errorIcon} />
+                            <p>{errors.email}</p>
                         </div>
                     )}
                     <input placeholder='Enter your password' className='mt-3 rounded p-2 outline-none' value={password} onChange={e => setPassword(e.target.value)} />
