@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const secret = 'Tausif4171'
 
-const cookieParser = require('cookie-parse')
+const cookieParser = require('cookie-parser')
 // const saltRounds = bcrypt.genSalt(10)
 const app = express()
 
@@ -52,7 +52,6 @@ app.post('/login', async (req, res) => {
         const passwordCheck = bcrypt.compareSync(password, userDoc.password);
 
         if (passwordCheck) {
-            console.log('test');
             jwt.sign({ email, id: userDoc._id }, secret, {}, (err, token) => {
                 if (err) {
                     // Handle the error if JWT signing fails
@@ -74,8 +73,19 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
-    res.json(req.cookies)
-})
+    const { token } = req.cookies;
+
+    jwt.verify(token, secret, {}, (err, info) => {
+        if (err) {
+            // Handle the error if JWT verification fails
+            console.error('JWT verification error:', err);
+            return res.status(401).json({ error: 'Unauthorized.' });
+        } else {
+            // Send the user information as a response
+            return res.json(info);
+        }
+    });
+});
 
 
 app.listen(4000)
