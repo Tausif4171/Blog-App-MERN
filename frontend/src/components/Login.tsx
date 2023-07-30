@@ -15,9 +15,18 @@ function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const login = async (e:any) => {
+        e.preventDefault()
+        await fetch('http://localhost:4000/login', {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+    }
+
     return (
         <div>
-            <form className='flex flex-col w-[25%] mx-auto my-[80px]'>
+            <form className='flex flex-col w-[25%] mx-auto my-[80px]' onSubmit={login}>
                 {/* <label className='align-center items-center'>Login</label> */}
                 <div className='flex flex-col'>
                     <input
@@ -29,7 +38,7 @@ function Login() {
                         placeholder='Enter your password'
                         className='mt-3 rounded p-2 outline-none'
                         value={password}
-                        onChange={e => setPassword(e.target.value)} 
+                        onChange={e => setPassword(e.target.value)}
                     />
                 </div>
                 <button className='bg-[#555] rounded-[4px] mt-6 text-[#fff] p-2'>Login</button>

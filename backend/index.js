@@ -36,7 +36,9 @@ app.post('/login', async (req, res) => {
     const { email, password } = req.body
     console.log(email, password)
     const userDoc = await UserModel.findOne({ email })
-    res.json(userDoc)
+    // res.json(userDoc)
+    const passwordCheck = bcrypt.compareSync(password, userDoc.password)
+    res.json(passwordCheck)
 })
 
 app.listen(4000)
