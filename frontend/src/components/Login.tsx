@@ -20,7 +20,8 @@ function Login() {
         await fetch('http://localhost:4000/login', {
             method: 'POST',
             body: JSON.stringify({ email, password }),
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
+            credentials:'include'
         })
     }
 
