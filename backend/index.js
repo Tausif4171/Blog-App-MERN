@@ -32,4 +32,11 @@ app.post('/register', async (req, res) => {
     }
 })
 
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body
+    console.log(email, password)
+    const userDoc = await UserModel.findOne({ email })
+    res.json(userDoc)
+})
+
 app.listen(4000)
