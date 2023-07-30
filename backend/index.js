@@ -34,27 +34,41 @@ app.post('/register', async (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
-    const { email, password } = req.body
-    console.log(email, password)
-    const userDoc = await UserModel.findOne({ email })
-    // res.json(userDoc)
-    const passwordCheck = bcrypt.compareSync(password, userDoc.password)
-    // res.json(passwordCheck)
-    if (passwordCheck) {
-        console.log('test');
-        jwt.sign({ email, id: userDoc._id }, secret, {}, (err, token) => {
-            if (err) {
-                // Handle the error if JWT signing fails
-                return res.status(500).json({ error: 'Failed to generate token.' });
-            } else {
-                // Set the generated token as a cookie in the response
-                return res.cookie('userToken', token).json({ success: true });
-            }
-        });
-    } else {
-        // Respond with an error message for wrong credentials
-        res.status(400).json({ error: 'Wrong credentials.' });
+    const { email, password } = req.body;
+    console.log(email, password);
+
+    try {
+        const userDoc = await UserModel.findOne({ email });
+
+        if (!userDoc) {
+            // If userDoc is null (user not found), handle the error accordingly
+            return res.status(404).json({ error: 'User not found.' });
+        }
+
+        // Now you can proceed with the password check
+        const passwordCheck = bcrypt.compareSync(password, userDoc.password);
+
+        if (passwordCheck) {
+            console.log('test');
+            jwt.sign({ email, id: userDoc._id }, secret, {}, (err, token) => {
+                if (err) {
+                    // Handle the error if JWT signing fails
+                    return res.status(500).json({ error: 'Failed to generate token.' });
+                } else {
+                    // Set the generated token as a cookie in the response
+                    return res.cookie('userToken', token).json({ success: true });
+                }
+            });
+        } else {
+            // Respond with an error message for wrong credentials
+            res.status(400).json({ error: 'Wrong credentials.' });
+        }
+    } catch (err) {
+        // Handle any other errors that might occur during the database query
+        console.error('Database error:', err);
+        return res.status(500).json({ error: 'Database error.' });
     }
-})
+});
+
 
 app.listen(4000)
