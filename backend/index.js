@@ -5,11 +5,14 @@ const UserModel = require('./models/User');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const secret = 'Tausif4171'
+
+const cookieParser = require('cookie-parse')
 // const saltRounds = bcrypt.genSalt(10)
 const app = express()
 
 app.use(cors({ credentials: true, origin: 'http://localhost:3001' }))
 app.use(express.json())
+app.use(cookieParser())
 
 app.get('/', (req, res) => {
     res.send('Test')
@@ -69,6 +72,10 @@ app.post('/login', async (req, res) => {
         return res.status(500).json({ error: 'Database error.' });
     }
 });
+
+app.get('/profile', (req, res) => {
+    res.json(req.cookies)
+})
 
 
 app.listen(4000)
