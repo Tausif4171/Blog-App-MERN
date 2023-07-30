@@ -2,6 +2,7 @@
 import { Fragment, useState } from 'react'
 
 import './toast.css'
+import { useNavigate } from 'react-router-dom'
 function Login() {
     // let [isOpen, setIsOpen] = useState(false)
 
@@ -14,15 +15,22 @@ function Login() {
     // }
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    const login = async (e:any) => {
+    const navigate = useNavigate()
+    const login = async (e: any) => {
         e.preventDefault()
-        await fetch('http://localhost:4000/login', {
+        const response = await fetch('http://localhost:4000/login', {
             method: 'POST',
             body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json' },
-            credentials:'include'
+            credentials: 'include'
         })
+        console.log(response)
+        if (response.status === 200) {
+            navigate('/')
+        }
+        else {
+            alert('please enter correct credential!')
+        }
     }
 
     return (
