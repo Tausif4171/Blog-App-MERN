@@ -41,14 +41,19 @@ app.post('/login', async (req, res) => {
     const passwordCheck = bcrypt.compareSync(password, userDoc.password)
     // res.json(passwordCheck)
     if (passwordCheck) {
+        console.log('test');
         jwt.sign({ email, id: userDoc._id }, secret, {}, (err, token) => {
             if (err) {
-                return err
+                // Handle the error if JWT signing fails
+                return res.status(500).json({ error: 'Failed to generate token.' });
+            } else {
+                // Set the generated token as a cookie in the response
+                return res.cookie('userToken', token).json({ success: true });
             }
-            else {
-                res.json(token)
-            }
-        })
+        });
+    } else {
+        // Respond with an error message for wrong credentials
+        res.status(400).json({ error: 'Wrong credentials.' });
     }
 })
 
