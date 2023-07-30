@@ -3,6 +3,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const UserModel = require('./models/User');
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const secret = 'Tausif4171'
 // const saltRounds = bcrypt.genSalt(10)
 const app = express()
 
@@ -27,7 +29,6 @@ app.post('/register', async (req, res) => {
         res.json(userDoc)
     }
     catch (e) {
-        console.log('s')
         res.status(400).json(e)
     }
 })
@@ -38,7 +39,17 @@ app.post('/login', async (req, res) => {
     const userDoc = await UserModel.findOne({ email })
     // res.json(userDoc)
     const passwordCheck = bcrypt.compareSync(password, userDoc.password)
-    res.json(passwordCheck)
+    // res.json(passwordCheck)
+    if (passwordCheck) {
+        jwt.sign({ email, id: userDoc._id }, secret, {}, (err, token) => {
+            if (err) {
+                return err
+            }
+            else {
+                res.json(token)
+            }
+        })
+    }
 })
 
 app.listen(4000)
