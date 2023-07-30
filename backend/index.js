@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const UserModel = require('./models/User');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const cookieParser = require('cookie-parser')
 const secret = 'Tausif4171'
 
-const cookieParser = require('cookie-parser')
 // const saltRounds = bcrypt.genSalt(10)
 const app = express()
 
@@ -73,19 +73,18 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
-    const { token } = req.cookies;
+    const { userToken } = req.cookies; 
+    console.log('Received token:', userToken);
 
-    jwt.verify(token, secret, {}, (err, info) => {
+    jwt.verify(userToken, secret, {}, (err, info) => {
         if (err) {
             // Handle the error if JWT verification fails
-            console.error('JWT verification error:', err);
             return res.status(401).json({ error: 'Unauthorized.' });
         } else {
-            // Send the user information as a response
+            console.log('Decoded user token payload:', info);
             return res.json(info);
         }
     });
 });
-
 
 app.listen(4000)
