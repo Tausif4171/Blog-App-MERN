@@ -19,6 +19,13 @@ function Header() {
     useEffect(() => {
         profile()
     }, [])
+
+    const logout = () => {
+        fetch('http://localhost:4000/logout', {
+            credentials: 'include',
+            method: 'POST'
+        })
+    }
     return (
         <div className='sticky top-0'>
             <header className='flex flex-row justify-around items-center bg-[#fff] w-full h-[50px] text-[#000]'>
@@ -32,7 +39,7 @@ function Header() {
                         <Link to={'/'}><li>Blog</li></Link>
                         {
                             email ? <><Link to={'/login'}><li>Create</li></Link>
-                                <Link to={'/register'}><li>logout</li></Link></> : <>   <Link to={'/login'}><li>Login</li></Link>
+                                <li onClick={logout}>logout</li></> : <>   <Link to={'/login'}><li>Login</li></Link>
                                 <Link to={'/register'}><li>Register</li></Link></>
                         }
 

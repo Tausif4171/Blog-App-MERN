@@ -73,7 +73,7 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
-    const { userToken } = req.cookies; 
+    const { userToken } = req.cookies;
     console.log('Received token:', userToken);
 
     jwt.verify(userToken, secret, {}, (err, info) => {
@@ -87,4 +87,7 @@ app.get('/profile', (req, res) => {
     });
 });
 
+app.post('/logout', (req, res) => {
+    res.cookie('userToken', '').json({ success: true })
+})
 app.listen(4000)
