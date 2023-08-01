@@ -1,53 +1,77 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 
 function Header() {
-    const [email, setEmail] = useState('')
-    console.log({ email })
-    const profile = async () => {
-        await fetch('http://localhost:4000/profile', {
-            credentials: 'include',
-            method: 'GET'
-        })
-            .then(response => {
-                response.json().then(info => {
-                    setEmail(info.email)
-                })
-            })
-        // console.log(response)
-    }
-    useEffect(() => {
-        profile()
-    }, [])
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [email, setEmail] = useState('');
+    const navigate = useNavigate();
 
-    const logout = () => {
-        fetch('http://localhost:4000/logout', {
-            credentials: 'include',
-            method: 'POST'
-        })
-    }
+    const profile = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/profile', {
+                credentials: 'include',
+                method: 'GET'
+            });
+
+            if (response.ok) {
+                const info = await response.json();
+                setEmail(info.email);
+                setLoggedIn(true);
+            }
+        } catch (error) {
+            console.error('Error fetching profile:', error);
+        }
+    };
+
+    const logout = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/logout', {
+                credentials: 'include',
+                method: 'POST'
+            });
+
+            if (response.ok) {
+                setLoggedIn(false);
+                navigate('/'); // Redirect to the home page after logout
+            } else {
+                console.error('Logout failed');
+            }
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
+    };
+
+    useEffect(() => {
+        profile();
+    });
+
     return (
         <div className='sticky top-0'>
             <header className='flex flex-row justify-around items-center bg-[#fff] w-full h-[50px] text-[#000]'>
-                <Link to={'/'} className='text-[22px]'>MyBlog</Link>
+                <Link to={'/'} className='text-[22px]'>
+                    MyBlog
+                </Link>
                 <nav>
-
                     <ul className='flex flex-row gap-4 text-[16px] cursor-pointer'>
-
                         <Link to={'/'}><li>Home</li></Link>
                         <Link to={'/'}><li>About</li></Link>
                         <Link to={'/'}><li>Blog</li></Link>
-                        {
-                            email ? <><Link to={'/login'}><li>Create</li></Link>
-                                <li onClick={logout}>logout</li></> : <>   <Link to={'/login'}><li>Login</li></Link>
-                                <Link to={'/register'}><li>Register</li></Link></>
-                        }
-
+                        {loggedIn ? (
+                            <>
+                                <Link to={'/login'}><li>Create</li></Link>
+                                <li onClick={logout}>Logout</li>
+                            </>
+                        ) : (
+                            <>
+                                <Link to={'/login'}><li>Login</li></Link>
+                                <Link to={'/register'}><li>Register</li></Link>
+                            </>
+                        )}
                     </ul>
                 </nav>
             </header>
         </div>
-    )
+    );
 }
 
-export default Header
+export default Header;
