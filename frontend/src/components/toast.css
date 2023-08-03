@@ -1,3 +1,19 @@
+/* Scale and opacity transitions */
+.zoom-in:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+.zoom-out:hover {
+  transform: scale(0.9);
+  opacity: 0.75;
+}
+.transition-transform {
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+
+
+
 .toast-message {
   background: white;
   color: #090808;
