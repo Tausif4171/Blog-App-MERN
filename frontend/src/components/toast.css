@@ -1,5 +1,5 @@
 /* Scale and opacity transitions */
-.zoom-in:hover {
+/* .zoom-in:hover {
   transform: scale(1.1);
   opacity: 1;
 }
@@ -10,9 +10,12 @@
 .transition-transform {
   transition-property: transform;
   transition-duration: 0.3s;
+} */
+
+.transition-transform {
+  transition-property: transform;
+  transition-duration: 0.3s;
 }
-
-
 
 .toast-message {
   background: white;

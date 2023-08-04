@@ -75,16 +75,16 @@ function Register() {
                 </div>
                 <button className='bg-[#555] rounded-[4px] mt-6 text-[#fff] p-2 outline-none'>Register</button>
             </form>
-            
+
             <div className="flex justify-center items-center space-x-[-10px]">
-                <div className="zoom-out">
-                    <img src={errorIcon} alt="Image 1" className="w-[40px] h-[40px] rounded-lg object-cover" />
+                <div className="zoomable">
+                    <img src={errorIcon} alt="Image 1" className="w-[40px] h-[40px] rounded-lg object-cover transition-transform transform hover:scale-110" />
                 </div>
-                <div className="zoom-in">
-                    <img src={errorIcon} alt="Image 2" className="w-[56px] h-[56px] rounded-lg object-cover" />
+                <div className="zoomable">
+                    <img src={errorIcon} alt="Image 2" className="w-[56px] h-[56px] rounded-lg object-cover transition-transform transform hover:scale-110" />
                 </div>
-                <div className="zoom-out">
-                    <img src={errorIcon} alt="Image 3" className="w-[40px] h-[40px] rounded-lg object-cover" />
+                <div className="zoomable">
+                    <img src={errorIcon} alt="Image 3" className="w-[40px] h-[40px] rounded-lg object-cover transition-transform transform hover:scale-110" />
                 </div>
             </div>
 
