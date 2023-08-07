@@ -77,13 +77,13 @@ function Register() {
             </form>
 
             <div className="flex justify-center items-center space-x-[-10px]">
-                <div className="zoomable">
+                <div className="">
                     <img src={errorIcon} alt="Image 1" className="w-[40px] h-[40px] rounded-lg object-cover transition-transform transform hover:scale-110" />
                 </div>
-                <div className="zoomable">
+                <div className="">
                     <img src={errorIcon} alt="Image 2" className="w-[56px] h-[56px] rounded-lg object-cover transition-transform transform hover:scale-110" />
                 </div>
-                <div className="zoomable">
+                <div className="">
                     <img src={errorIcon} alt="Image 3" className="w-[40px] h-[40px] rounded-lg object-cover transition-transform transform hover:scale-110" />
                 </div>
             </div>

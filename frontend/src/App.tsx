@@ -9,17 +9,19 @@ import Register from './components/Register';
 
 function App() {
   return (
-    <div className='bg-[#dbdada] w-full min-h-screen'>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Post />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-          </Route>
-        </Routes>
-      </Router>
-    </div>
+    <>
+      <div className='bg-[#dbdada] w-full min-h-screen'>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Post />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+            </Route>
+          </Routes>
+        </Router>
+      </div>
+    </>
   );
 }
 
