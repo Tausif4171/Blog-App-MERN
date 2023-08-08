@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import Post from './components/Post';
 import Login from './components/Login';
 import Register from './components/Register';
+import CreatePost from './components/CreatePost';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Route index element={<Post />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
+              <Route path='/create' element={<CreatePost />} />
             </Route>
           </Routes>
         </Router>

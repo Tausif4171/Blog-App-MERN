@@ -58,7 +58,7 @@ function Header() {
                         <Link to={'/'}><li className='hover:text-[#222222] text-[#606060] font-medium'>Blog</li></Link>
                         {loggedIn ? (
                             <>
-                                <Link to={'/login'}><li className='hover:text-[#222222] text-[#606060] font-medium'>Create</li></Link>
+                                <Link to={'/create'}><li className='hover:text-[#222222] text-[#606060] font-medium'>Create</li></Link>
                                 <li onClick={logout} className='hover:text-[#222222] text-[#606060] font-medium'>Logout</li>
                             </>
                         ) : (
