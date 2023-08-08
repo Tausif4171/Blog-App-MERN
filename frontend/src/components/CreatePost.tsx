@@ -1,4 +1,7 @@
 import React from 'react'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css';
+
 
 function CreatePost() {
     return (
@@ -7,7 +10,8 @@ function CreatePost() {
                 <input type='text' placeholder='please enter title' className='flex justify-items-center p-2' />
                 <input type='text' placeholder='please enter summary' className='flex justify-items-center p-2' />
                 <input type='file' />
-                <textarea placeholder='enter message' className='flex justify-items-center p-2' />
+                {/* <textarea placeholder='enter message' className='flex justify-items-center p-2' /> */}
+                <ReactQuill theme="snow" className='bg-[#fff]' />
                 <button className='w-[100%] bg-[#555] text-[#fff] p-2 mt-4 rounded-md'>Create</button>
             </form>
         </div>
