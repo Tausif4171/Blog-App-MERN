@@ -11,12 +11,19 @@ function CreatePost() {
     console.log({ title }, { summary }, { content })
 
     const createPost = async () => {
-        const formData = { 'title': title, 'summary': summary, 'content': content }
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('summary', summary);
+        formData.append('content', content);
+        if (files) {
+            formData.append('file', files[0]);
+        }
+    
         const response = await fetch('http://localhost:4000/create', {
             method: 'POST',
-            body: JSON.stringify(formData),
-        })
-        console.log({ response })
+            body: formData,
+        });
+        console.log({ response });
     }
     return (
         <div className='flex justify-center items-center mt-[100px]'>
