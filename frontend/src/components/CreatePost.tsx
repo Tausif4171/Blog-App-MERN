@@ -8,9 +8,10 @@ function CreatePost() {
     const [summary, setSummary] = useState('')
     const [content, setContent] = useState('')
     const [files, setFiles] = useState<FileList | null>(null);
-    console.log({ title }, { summary }, { content })
+    console.log({ title }, { summary }, { content }, { files })
 
-    const createPost = async () => {
+    const createPost = async (e: any) => {
+        e.preventDefault()
         const formData = new FormData();
         formData.append('title', title);
         formData.append('summary', summary);
@@ -18,13 +19,14 @@ function CreatePost() {
         if (files) {
             formData.append('file', files[0]);
         }
-    
+
         const response = await fetch('http://localhost:4000/create', {
             method: 'POST',
             body: formData,
         });
         console.log({ response });
     }
+
     return (
         <div className='flex justify-center items-center mt-[100px]'>
             <form className='flex flex-col gap-y-2 w-[30%]' onSubmit={createPost}>

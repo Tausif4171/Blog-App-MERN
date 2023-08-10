@@ -87,7 +87,13 @@ app.get('/profile', (req, res) => {
     });
 });
 
+app.post('/create',(req,res)=>{
+    
+})
+
 app.post('/logout', (req, res) => {
     res.cookie('userToken', '').json({ success: true })
 })
+
+
 app.listen(4000)
