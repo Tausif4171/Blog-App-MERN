@@ -17,7 +17,7 @@ function CreatePost() {
         formData.append('summary', summary);
         formData.append('content', content);
         if (files) {
-            formData.append('file', files[0]);
+            formData.append('files', files[0]);
         }
 
         const response = await fetch('http://localhost:4000/create', {

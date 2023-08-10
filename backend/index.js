@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const multer = require('multer')
+const uploadFiles = multer({ dest: 'uploads/' })
 const mongoose = require('mongoose');
 const UserModel = require('./models/User');
 const bcrypt = require('bcrypt')
@@ -87,8 +89,9 @@ app.get('/profile', (req, res) => {
     });
 });
 
-app.post('/create',(req,res)=>{
-    
+app.post('/create', uploadFiles.single('files'), (req, res) => {
+    console.log(req.file)
+    res.json({ 'file': req.file })
 })
 
 app.post('/logout', (req, res) => {
