@@ -4,7 +4,11 @@ import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
     return (
-        <main>
+        // <main>
+        //     <Header />
+        //     <Outlet />
+        // </main>
+        <main className='h-screen overflow-auto'>
             <Header />
             <Outlet />
         </main>

@@ -46,8 +46,8 @@ function Header() {
     });
 
     return (
-        <div className='sticky top-0'>
-            <header className='flex flex-row justify-around items-center bg-[#fff] w-full h-[50px] text-[#000]'>
+
+            <header className='flex flex-row justify-around items-center bg-[#fff] fixed top-0 w-full h-[50px] text-[#000]'>
                 <Link to={'/'} className='text-[22px] text-[#222222] font-bold'>
                     MyBlog
                 </Link>
@@ -70,7 +70,7 @@ function Header() {
                     </ul>
                 </nav>
             </header>
-        </div>
+    
     );
 }
 
