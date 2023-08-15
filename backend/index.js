@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const secret = 'Tausif4171'
-
+const fs = require('fs')
 // const saltRounds = bcrypt.genSalt(10)
 const app = express()
 
@@ -90,7 +90,13 @@ app.get('/profile', (req, res) => {
 });
 
 app.post('/create', uploadFiles.single('files'), (req, res) => {
+    const { originalname, path } = req.file
+    const parts = originalname.split('.')
+    const ext = parts[parts.length - 1]
+    console.log({ originalname }, { parts }, { ext })
     console.log(req.file)
+    const newPath = path + '.' + ext
+    fs.renameSync(path, newPath)
     res.json({ 'file': req.file })
 })
 
