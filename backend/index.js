@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const secret = 'Tausif4171'
 const fs = require('fs')
+const Post = require('./models/Post')
 // const saltRounds = bcrypt.genSalt(10)
 const app = express()
 
@@ -89,7 +90,7 @@ app.get('/profile', (req, res) => {
     });
 });
 
-app.post('/create', uploadFiles.single('files'), (req, res) => {
+app.post('/create', uploadFiles.single('files'), async (req, res) => {
     const { originalname, path } = req.file
     const parts = originalname.split('.')
     const ext = parts[parts.length - 1]
@@ -97,7 +98,17 @@ app.post('/create', uploadFiles.single('files'), (req, res) => {
     console.log(req.file)
     const newPath = path + '.' + ext
     fs.renameSync(path, newPath)
-    res.json({ 'file': req.file })
+
+    const { title, summary, content } = req.body
+    const newPost = await Post.create({
+        title,
+        summary,
+        content,
+        cover: newPath
+    })
+    console.log({ newPost })
+
+    res.json(newPost)
 })
 
 app.post('/logout', (req, res) => {
