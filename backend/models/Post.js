@@ -6,6 +6,8 @@ const postSchema = new Schema({
     summary: String,
     content: String,
     cover: String
+}, {
+    timestamps: true
 })
 
 const postModel = model('posts', postSchema)
