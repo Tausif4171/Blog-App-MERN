@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from 'react-router-dom';
 
 
 function CreatePost() {
@@ -9,6 +10,7 @@ function CreatePost() {
     const [content, setContent] = useState('')
     const [files, setFiles] = useState<FileList | null>(null);
     console.log({ title }, { summary }, { content }, { files })
+    const navigate = useNavigate()
 
     const createPost = async (e: any) => {
         e.preventDefault()
@@ -25,6 +27,9 @@ function CreatePost() {
             body: formData,
         });
         console.log({ response });
+        if (response.status === 200) {
+            navigate('/')
+        }
     }
 
     return (
