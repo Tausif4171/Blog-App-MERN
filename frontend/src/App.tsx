@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import Post from './components/Post';
+import Blogs from './components/Post';
 import Login from './components/Login';
 import Register from './components/Register';
 import CreatePost from './components/CreatePost';
@@ -15,7 +15,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index element={<Post />} />
+              <Route index element={<Blogs />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/create' element={<CreatePost />} />
