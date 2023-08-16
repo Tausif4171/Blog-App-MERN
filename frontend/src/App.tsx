@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import Blogs from './components/Post';
+import Blogs from './components/Blogs';
 import Login from './components/Login';
 import Register from './components/Register';
 import CreatePost from './components/CreatePost';

@@ -111,6 +111,11 @@ app.post('/create', uploadFiles.single('files'), async (req, res) => {
     res.json(newPost)
 })
 
+app.get('/create', async (req, res) => {
+    const allPost = await Post.find()
+    res.json(allPost)
+})
+
 app.post('/logout', (req, res) => {
     res.cookie('userToken', '').json({ success: true })
 })
