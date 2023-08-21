@@ -35,8 +35,8 @@ function CreatePost() {
     return (
         <div className='flex justify-center items-center mt-[100px]'>
             <form className='flex flex-col gap-y-2 w-[30%]' onSubmit={createPost}>
-                <input type='text' placeholder='please enter title' className='flex justify-items-center p-2' value={title} onChange={e => setTitle(e.target.value)} />
-                <input type='text' placeholder='please enter summary' className='flex justify-items-center p-2' value={summary} onChange={e => setSummary(e.target.value)} />
+                <input type='text' placeholder='please enter title' className='flex justify-items-center p-2 outline-none' value={title} onChange={e => setTitle(e.target.value)} />
+                <input type='text' placeholder='please enter summary' className='flex justify-items-center p-2 outline-none' value={summary} onChange={e => setSummary(e.target.value)} />
                 <input type="file" onChange={e => setFiles(e.target.files)} />
                 {/* <textarea placeholder='enter message' className='flex justify-items-center p-2' /> */}
                 <ReactQuill theme="snow" className='bg-[#fff]' value={content} onChange={setContent} />
