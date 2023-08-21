@@ -18,8 +18,8 @@ function Post({ title, summary, content, cover, createdAt }: IPost) {
     //     className: 'toast-message'
     // });
     return (
-        <div className='flex flex-col justify-center items-center min-h-screen'>
-            <div className='w-[50%] lg:w-[30%] bg-slate-50'>
+        <div className='flex flex-row justify-center items-center'>
+            <div className='w-full bg-slate-50'>
                 <img src={cover} className='w-full' />
                 <div className='p-4'>
                     <h1 className='text-[20px] font-medium mb-2'>{title}</h1>
