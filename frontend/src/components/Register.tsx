@@ -76,7 +76,7 @@ function Register() {
                 <button className='bg-[#555] rounded-[4px] mt-6 text-[#fff] p-2 outline-none'>Register</button>
             </form>
 
-            <div className="flex justify-center items-center space-x-[-10px]">
+            {/* <div className="flex justify-center items-center space-x-[-10px]">
                 <div className="">
                     <img src={errorIcon} alt="Image 1" className="w-[40px] h-[40px] rounded-lg object-cover transition-transform transform hover:scale-110" />
                 </div>
@@ -86,7 +86,7 @@ function Register() {
                 <div className="">
                     <img src={errorIcon} alt="Image 3" className="w-[40px] h-[40px] rounded-lg object-cover transition-transform transform hover:scale-110" />
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )
