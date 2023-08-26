@@ -9,10 +9,11 @@ interface IPost {
     summary: string,
     content: string,
     cover: string,
-    createdAt: string
+    createdAt: string,
+    author: any
 }
 
-function Post({ title, summary, content, cover, createdAt }: IPost) {
+function Post({ title, summary, content, cover, createdAt, author }: IPost) {
     // const notify = () => toast.success("Wow so easy!", {
     //     position: toast.POSITION.BOTTOM_LEFT,
     //     className: 'toast-message'
@@ -24,7 +25,7 @@ function Post({ title, summary, content, cover, createdAt }: IPost) {
                 <div className='p-4'>
                     <h1 className='text-[20px] font-medium mb-2'>{title}</h1>
                     <div className='pb-2'>
-                        <p className='flex gap-[8px] text-[13px]'><a className='font-semibold'>John Doe</a><time>{moment(createdAt).format('D-MM-YYYY h:mmA')}</time></p>
+                        <p className='flex gap-[8px] text-[13px]'><a className='font-semibold'>{author?.email}</a><time>{moment(createdAt).format('D-MM-YYYY h:mmA')}</time></p>
                     </div>
                     <p className=''>
                         {summary}
