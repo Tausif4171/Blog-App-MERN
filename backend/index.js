@@ -16,6 +16,7 @@ const app = express()
 app.use(cors({ credentials: true, origin: 'http://localhost:3001' }))
 app.use(express.json())
 app.use(cookieParser())
+app.use('/uploads', express.static(__dirname + '/uploads'))
 
 app.get('/', (req, res) => {
     res.send('Test')
@@ -92,6 +93,7 @@ app.get('/profile', (req, res) => {
 
 app.post('/create', uploadFiles.single('files'), async (req, res) => {
     const { originalname, path } = req.file
+    console.log({path})
     const parts = originalname.split('.')
     const ext = parts[parts.length - 1]
     console.log({ originalname }, { parts }, { ext })

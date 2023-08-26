@@ -18,10 +18,11 @@ function Post({ title, summary, content, cover, createdAt, author }: IPost) {
     //     position: toast.POSITION.BOTTOM_LEFT,
     //     className: 'toast-message'
     // });
+    console.log({ cover })
     return (
         <div className='flex flex-row justify-center items-center'>
             <div className='w-full bg-slate-50'>
-                <img src={cover} className='w-full' />
+                <img src={'http://localhost:4000/' + cover.replace(/\\/g, '/')} className='w-full' />
                 <div className='p-4'>
                     <h1 className='text-[20px] font-medium mb-2'>{title}</h1>
                     <div className='pb-2'>
