@@ -25,6 +25,7 @@ function CreatePost() {
         const response = await fetch('http://localhost:4000/create', {
             method: 'POST',
             body: formData,
+            credentials:'include'
         });
         console.log({ response });
         if (response.status === 200) {

@@ -99,16 +99,28 @@ app.post('/create', uploadFiles.single('files'), async (req, res) => {
     const newPath = path + '.' + ext
     fs.renameSync(path, newPath)
 
-    const { title, summary, content } = req.body
-    const newPost = await Post.create({
-        title,
-        summary,
-        content,
-        cover: newPath
-    })
-    console.log({ newPost })
+    const { userToken } = req.cookies;
+    jwt.verify(userToken, secret, {}, async (err, info) => {
+        if (err) {
+            // Handle the error if JWT verification fails
+            return res.status(401).json({ error: 'Unauthorized.' });
+        } else {
+            console.log('Decoded user token payload:', info);
+            const { title, summary, content } = req.body
+            const newPost = await Post.create({
+                title,
+                summary,
+                content,
+                cover: newPath,
+                author: info.id
+            })
+            console.log({ newPost })
 
-    res.json(newPost)
+            res.json(newPost)
+        }
+    });
+
+
 })
 
 app.get('/create', async (req, res) => {
