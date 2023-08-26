@@ -124,7 +124,9 @@ app.post('/create', uploadFiles.single('files'), async (req, res) => {
 })
 
 app.get('/create', async (req, res) => {
-    const allPost = await Post.find().populate('author', ['email'])
+    const allPost = await Post.find()
+        .populate('author', ['email'])
+        .sort({ createdAt: -1 })
     res.json(allPost)
 })
 
