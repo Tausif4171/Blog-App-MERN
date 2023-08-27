@@ -136,5 +136,11 @@ app.post('/logout', (req, res) => {
     res.cookie('userToken', '').json({ success: true })
 })
 
+app.get('/post/:id', async(req,res)=>{
+    const {id} = req.params
+    const postDoc = Post.findById(id)
+    res.json(postDoc)
+})
+
 
 app.listen(4000)
