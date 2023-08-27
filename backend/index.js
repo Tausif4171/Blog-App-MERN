@@ -138,7 +138,7 @@ app.post('/logout', (req, res) => {
 
 app.get('/post/:id', async(req,res)=>{
     const {id} = req.params
-    const postDoc = Post.findById(id)
+    const postDoc = await Post.findById(id)
     res.json(postDoc)
 })
 
