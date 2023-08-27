@@ -7,6 +7,7 @@ import Blogs from './components/Blogs';
 import Login from './components/Login';
 import Register from './components/Register';
 import CreatePost from './components/CreatePost';
+import SinglePostDetail from './components/SinglePostDetail';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/create' element={<CreatePost />} />
+              <Route path='/post/:id' element={<SinglePostDetail />} />
             </Route>
           </Routes>
         </Router>

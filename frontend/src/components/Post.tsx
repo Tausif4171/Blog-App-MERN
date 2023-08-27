@@ -3,8 +3,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './toast.css'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 interface IPost {
+    _id: string,
     title: string,
     summary: string,
     content: string,
@@ -13,7 +15,7 @@ interface IPost {
     author: any
 }
 
-function Post({ title, summary, content, cover, createdAt, author }: IPost) {
+function Post({ _id, title, summary, content, cover, createdAt, author }: IPost) {
     // const notify = () => toast.success("Wow so easy!", {
     //     position: toast.POSITION.BOTTOM_LEFT,
     //     className: 'toast-message'
@@ -22,9 +24,13 @@ function Post({ title, summary, content, cover, createdAt, author }: IPost) {
     return (
         <div className='flex flex-row justify-center items-center'>
             <div className='w-full bg-slate-50'>
-                <img src={'http://localhost:4000/' + cover.replace(/\\/g, '/')} className='w-full' />
+                <Link to={`/post/${_id}`}>
+                    <img src={'http://localhost:4000/' + cover.replace(/\\/g, '/')} className='w-full' />
+                </Link>
                 <div className='p-4'>
-                    <h1 className='text-[20px] font-medium mb-2'>{title}</h1>
+                    <Link to={`/post/${_id}`}>
+                        <h1 className='text-[20px] font-medium mb-2'>{title}</h1>
+                    </Link>
                     <div className='pb-2'>
                         <p className='flex gap-[8px] text-[13px]'><a className='font-semibold'>{author?.email}</a><time>{moment(createdAt).format('D-MM-YYYY h:mmA')}</time></p>
                     </div>
