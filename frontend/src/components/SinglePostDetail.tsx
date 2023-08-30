@@ -13,11 +13,7 @@ function SinglePostDetail() {
             })
         })
     }, [])
-    function removeHtmlTags(str: any) {
-        return str.replace(/<[^>]+>/g, "");
-    }
-
-    const noHtmlTags = removeHtmlTags(postInfo?.content);
+    
     return (
         <div className='flex flex-col justify-center items-center mt-[100px]'>
             <img src={'http://localhost:4000/' + postInfo?.cover.replace(/\\/g, '/')} />
@@ -25,7 +21,7 @@ function SinglePostDetail() {
                 {postInfo?.title}
             </h1>
             <p>{postInfo?.author.email}</p>
-            <p>{noHtmlTags}</p>
+            <p dangerouslySetInnerHTML={{ __html: postInfo?.content }} />
             <p>{postInfo?.summary}</p>
         </div>
     )
