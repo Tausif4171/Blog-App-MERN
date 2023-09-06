@@ -3,9 +3,29 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 function SinglePostDetail() {
+    const [userInfo, setUserInfo] = useState<any>(null)
     const [postInfo, setPostInfo] = useState<any>(null)
     const { id } = useParams()
-    console.log({ id }, { postInfo })
+    console.log({ id }, { postInfo }, { userInfo })
+
+    const profile = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/profile', {
+                credentials: 'include',
+                method: 'GET'
+            });
+
+            if (response.ok) {
+                const info = await response.json();
+                console.log({ info })
+                setUserInfo(info)
+                // setEmail(info.email);
+                // setLoggedIn(true);
+            }
+        } catch (error) {
+            console.error('Error fetching profile:', error);
+        }
+    };
     useEffect(() => {
         fetch(`http://localhost:4000/post/${id}`).then((response: any) => {
             console.log({ response })
@@ -13,6 +33,7 @@ function SinglePostDetail() {
                 setPostInfo(postInfo)
             })
         })
+        profile()
     }, [])
 
     return (
@@ -26,8 +47,26 @@ function SinglePostDetail() {
                 <p className=' font-semibold'>by {postInfo?.author.email}</p>
                 <p dangerouslySetInnerHTML={{ __html: postInfo?.content }} />
                 <p>{postInfo?.summary}</p>
+
+                {
+                    postInfo.author._id === userInfo?.id && (
+                        <>
+                            <div className='mt-8'>
+                                <button
+                                    className='flex flex-row justify-center items-center bg-[#000] rounded-[5px] px-4 gap-x-[8px]'
+                                // onClick={handleSubmit}
+                                >
+                                    <span className='text-[15px] font-medium text-[#ffff] mt-[-1px] font-InstrumentMedium py-[6px]'>
+                                        Edit this post
+                                    </span>
+                                </button>
+                            </div>
+                        </>
+                    )
+                }
             </div>
             }
+
 
         </div>
     )
