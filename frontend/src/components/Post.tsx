@@ -25,7 +25,7 @@ function Post({ _id, title, summary, content, cover, createdAt, author }: IPost)
         <div className='flex flex-row justify-center items-center'>
             <div className='w-full bg-slate-50'>
                 <Link to={`/post/${_id}`}>
-                    <img src={'http://localhost:4000/' + cover.replace(/\\/g, '/')} className='w-full' />
+                    <img src={'http://localhost:4000/' + cover.replace(/\\/g, '/')} className='w-[280px] h-[250px]' />
                 </Link>
                 <div className='p-4'>
                     <Link to={`/post/${_id}`}>
