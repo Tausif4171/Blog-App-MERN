@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactQuill from 'react-quill';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function EditPost() {
     const [title, setTitle] = useState<any>('')
@@ -9,10 +9,26 @@ function EditPost() {
     const [files, setFiles] = useState<FileList | null>(null);
     console.log({ title }, { summary }, { content }, { files })
     const navigate = useNavigate()
+    const { id } = useParams()
 
     const updatePost = (e: any) => {
         e.preventDefault()
     }
+
+    const fetchPostDetailsBasedOnId = () => {
+        const response = fetch(`http://localhost:4000/post/${id}`).then(response => response.json().then(postDetail => {
+            console.log({ postDetail })
+            setTitle(postDetail.title)
+            setSummary(postDetail.summary)
+            setFiles(postDetail.cover)
+            setContent(postDetail.content)
+        }
+        ))
+    }
+
+    useEffect(() => {
+        fetchPostDetailsBasedOnId()
+    }, [])
 
     return (
         <div className='flex justify-center items-center mt-[100px]'>
