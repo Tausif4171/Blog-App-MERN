@@ -93,7 +93,7 @@ app.get('/profile', (req, res) => {
 
 app.post('/create', uploadFiles.single('files'), async (req, res) => {
     const { originalname, path } = req.file
-    console.log({path})
+    console.log({ path })
     const parts = originalname.split('.')
     const ext = parts[parts.length - 1]
     console.log({ originalname }, { parts }, { ext })
@@ -136,11 +136,30 @@ app.post('/logout', (req, res) => {
     res.cookie('userToken', '').json({ success: true })
 })
 
-app.get('/post/:id', async(req,res)=>{
-    const {id} = req.params
-    const postDoc = await Post.findById(id).populate('author',['email'])
+app.get('/post/:id', async (req, res) => {
+    const { id } = req.params
+    const postDoc = await Post.findById(id).populate('author', ['email'])
     res.json(postDoc)
 })
+
+app.put('/post/:id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const updatedPostData = req.body;
+
+        // Update the post in MongoDB using Mongoose
+        const updatedPost = await Post.findByIdAndUpdate(postId, updatedPostData, { new: true });
+
+        if (!updatedPost) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
+        res.json({ message: 'Post updated successfully', updatedPost });
+    } catch (error) {
+        console.error('Error updating post:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 
 app.listen(4000)

@@ -11,9 +11,30 @@ function EditPost() {
     const navigate = useNavigate()
     const { id } = useParams()
 
-    const updatePost = (e: any) => {
-        e.preventDefault()
-    }
+    const updatePost = async (e: any) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`http://localhost:4000/post/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title, summary, content, files }),
+            });
+
+            if (response.ok) {
+                // Handle successful update, e.g., show a success message
+                console.log('Post updated successfully');
+            } else {
+                // Handle error response from the server
+                console.error('Error updating post');
+            }
+        } catch (error) {
+            // Handle network errors
+            console.error('Network error:', error);
+        }
+    };
+
 
     const fetchPostDetailsBasedOnId = () => {
         const response = fetch(`http://localhost:4000/post/${id}`).then(response => response.json().then(postDetail => {
