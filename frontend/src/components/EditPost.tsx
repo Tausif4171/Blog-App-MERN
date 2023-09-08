@@ -29,6 +29,7 @@ function EditPost() {
                 // Handle error response from the server
                 console.error('Error updating post');
             }
+            navigate(`/post/${id}`)
         } catch (error) {
             // Handle network errors
             console.error('Network error:', error);
