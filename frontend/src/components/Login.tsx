@@ -34,7 +34,7 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className='flex flex-col w-[100%] justify-center items-center mx-auto min-h-screen'>
             <form className='flex flex-col w-[25%] mx-auto my-[80px]' onSubmit={login}>
                 <label className='text-[22px] text-[#051729] font-semibold'>Login to your account</label>
                 <div className='flex flex-col'>
