@@ -56,7 +56,7 @@ function Register() {
     return (
         <div>
             <form className='flex flex-col w-[25%] mx-auto my-[80px]' onSubmit={handleSubmit}>
-                <label className='text-[22px] text-[#051729] font-semibold'>Sign Up to your account</label>
+                <label className='text-[22px] text-[#051729] font-semibold'>Register to your account</label>
                 <div className='flex flex-col'>
                     <input
                         placeholder='Enter your email'
